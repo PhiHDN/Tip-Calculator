@@ -37,6 +37,10 @@ class ViewController: UIViewController {
         
         tipLabel.text = String(format: "$%.2f", tip)
         totalLabel.text = String(format: "$%.2f", total)
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setDouble(billAmount, forKey: "savedBill")
+        defaults.synchronize()
     }
     @IBAction func onTap(sender: AnyObject) {
         view.endEditing(true)
@@ -50,6 +54,10 @@ class ViewController: UIViewController {
         if tipdef > 0 {
             let indexTmp = Constant.tipPercentages.indexOf(tipdef)
             tipControl.selectedSegmentIndex = indexTmp!
+        }
+        let previousBill = defaults.doubleForKey("savedBill")
+        if previousBill > 0 {
+            billField.text = String(previousBill)
         }
         onEditingChanged(self)
     }
