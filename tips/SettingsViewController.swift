@@ -13,11 +13,11 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var tipPercentageDefault: UISegmentedControl!
     override func viewDidLoad() {
         super.viewDidLoad()
-        let tipPercentages = [0.18, 0.2, 0.22]
+        //let tipPercentages = [0.18, 0.2, 0.22]
         let defaults = NSUserDefaults.standardUserDefaults()
         let tipdef = defaults.doubleForKey("tipPercentageDef")
         if tipdef > 0 {
-            let indexTmp = tipPercentages.indexOf(tipdef)
+            let indexTmp = Constant.tipPercentages.indexOf(tipdef)
             tipPercentageDefault.selectedSegmentIndex = indexTmp!
         }
         
@@ -41,9 +41,9 @@ class SettingsViewController: UIViewController {
     */
 
     @IBAction func defaultValueChanged(sender: AnyObject) {
-        let tipPercentages = [0.18, 0.2, 0.22]
+        //let tipPercentages = [0.18, 0.2, 0.22]
         let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setDouble(tipPercentages[tipPercentageDefault.selectedSegmentIndex], forKey: "tipPercentageDef")
+        defaults.setDouble(Constant.tipPercentages[tipPercentageDefault.selectedSegmentIndex], forKey: "tipPercentageDef")
         defaults.synchronize()
     }
 }

@@ -28,8 +28,8 @@ class ViewController: UIViewController {
     }
 
     @IBAction func onEditingChanged(sender: AnyObject) {
-        let tipPercentages = [0.18, 0.2, 0.22]
-        let tipPercentage = tipPercentages[tipControl.selectedSegmentIndex]
+        //let tipPercentages = [0.18, 0.2, 0.22]
+        let tipPercentage = Constant.tipPercentages[tipControl.selectedSegmentIndex]
         
         let billAmount = NSString(string: billField.text!).doubleValue
         let tip = billAmount * tipPercentage
@@ -44,11 +44,11 @@ class ViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         //print("view will appear")
-        let tipPercentages = [0.18, 0.2, 0.22]
+        //let tipPercentages = [0.18, 0.2, 0.22]
         let defaults = NSUserDefaults.standardUserDefaults()
         let tipdef = defaults.doubleForKey("tipPercentageDef")
         if tipdef > 0 {
-            let indexTmp = tipPercentages.indexOf(tipdef)
+            let indexTmp = Constant.tipPercentages.indexOf(tipdef)
             tipControl.selectedSegmentIndex = indexTmp!
         }
         onEditingChanged(self)
